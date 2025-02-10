@@ -1,0 +1,90 @@
+import java.util.ArrayList;
+
+public class Coffee {
+    String name;
+     String type;
+     String size;
+     double price;
+     String roastLevel;
+     String origin;
+     boolean isDecaf;
+     int stock;
+     ArrayList<String> flavorNotes;
+     String brewMethod;
+
+    public Coffee (String name, String type, String size, double price, String roastLevel, String origin, boolean isDecaf, int stock, ArrayList<String> flavorNotes, String brewMethod) {
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.price = price;
+        this.roastLevel = roastLevel;
+        this.origin = origin;
+        this.isDecaf = isDecaf;
+        this.stock = stock;
+        this.flavorNotes = new ArrayList<>(flavorNotes);
+        this.brewMethod = brewMethod;
+    }
+
+    public double calculatePrice(String size) {
+        switch (size.toLowerCase()) {
+            case "small":
+                return price;
+            case "medium":
+                return price * 1.25;
+            case "large":
+                return price * 1.5;
+            default:
+                return price;
+        }
+    }
+
+    public boolean checkStock() {
+        return stock > 0;
+    }
+
+    public void addFlavor(String note) {
+        flavorNotes.add(note);
+    }
+
+    public void updateStock(int quantity) {
+        stock = quantity;
+    }
+
+    public String describe() {
+        return String.format("A %s roast coffee with %s notes. Origin: %s. Brewed using %s method.", roastLevel, String.join(", ", flavorNotes), origin, brewMethod);
+    }
+
+    public void setDecaf(boolean isDecaf) {
+        this.isDecaf = isDecaf;
+    }
+
+    public void changeRoastLevel(String newRoastLevel) {
+        this.roastLevel = newRoastLevel;
+    }
+
+    public void discount(double percentage) {
+        price -= price * (percentage / 100);
+    }
+
+    // Getters and setters (optional) for each property can be added here
+
+    // Main method for testing (optional)
+    public static void main(String[] args) {
+        ArrayList<String> flavorNotes = new ArrayList<>();
+        flavorNotes.add("Chocolate");
+        flavorNotes.add("Nutty");
+
+        Coffee coffee = new Coffee("Espresso", "Arabica", "Medium", 65.50, "Dark", "Colombia", false, 10, flavorNotes, "Espresso");
+
+        System.out.println(coffee.describe());
+        System.out.println("large: PHP " + coffee.calculatePrice("large"));
+        System.out.println("In stock: " + coffee.checkStock());
+        coffee.addFlavor("Citrus");
+        coffee.updateStock(5);
+        coffee.setDecaf(true);
+        coffee.changeRoastLevel("Medium");
+        coffee.discount(10);
+        System.out.println(coffee.describe());
+        System.out.println("New price for large: PHP " + coffee.calculatePrice("large"));
+    }
+}
