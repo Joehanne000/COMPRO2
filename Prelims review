@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class Basta {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the number of rows: ");
+        int rows = sc.nextInt();
+        System.out.print("Enter the number of columns: ");
+        int columns = sc.nextInt();
+
+        int [][] arrays = new int [rows][columns];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print("Enter value for elements ("+ i + j + "," + j + "):");
+                arrays [i][j] = sc.nextInt();
+
+            }
+        }
+
+        int[] rowSums = new int[rows];
+        for (int i = 0; i < rows; i++){
+            int sums = 0;
+            for (int j = 0; j < columns; j++){
+
+            }
+            rowSums[i] = sums;
+        }
+
+        int[] columnSums = new int[columns];
+        for (int j = 0; j < columns; j++){
+            int sum = 0;
+            for (int i = 0; i < rows; i++){
+                sum += arrays[i][j];
+            }
+            columnSums[j] = sum;
+        }
+        System.out.println("2D arrays:");
+        for (int i = 0; i < rows; i++){
+            for (int j = 0; j < columns; j++){
+                System.out.print(arrays [i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("Sum of each row:");
+        for (int sums : columnSums){
+            System.out.print(sums);
+        }
+        sc.close();
+        
+
+
+    }
+}
