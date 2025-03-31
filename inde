@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Coffee List</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Coffee Management</h1>
+    <form method="get" action="/coffee/search">
+        <input type="text" name="query" placeholder="Search Coffee">
+        <button type="submit">Search</button>
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="coffee : ${coffeeList}">
+            <td th:text="${coffee.id}"></td>
+            <td th:text="${coffee.name}"></td>
+            <td th:text="${coffee.description}"></td>
+            <td>
+                <a th:href="@{/coffee/edit/{id}(id=${coffee.id})}">Edit</a>
+                <a th:href="@{/coffee/delete/{id}(id=${coffee.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <a href="/coffee/add">Add Coffee</a>
+    <a href="/coffee/save">Save to CSV</a>
+</body>
+</html>
