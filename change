@@ -1,0 +1,78 @@
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import java.util.*;
+import java.io.FileWriter;
+import org.apache.commons.csv.*;
+
+@Controller
+@RequestMapping("/coffee")
+public class CoffeeController {
+
+    private List<Coffee> coffeeList = new ArrayList<>();
+    private Long idCounter = 1L;
+
+    @GetMapping
+    public String getAllCoffee(Model model) {
+        model.addAttribute("coffeeList", coffeeList);
+        return "coffee-list";
+    }
+
+    @GetMapping("/add")
+    public String addCoffeeForm(Model model) {
+        model.addAttribute("coffee", new Coffee(null, "", ""));
+        return "add-coffee";
+    }
+
+    @PostMapping("/add")
+    public String addCoffee(@ModelAttribute Coffee coffee) {
+        coffee.setId(idCounter++);
+        coffeeList.add(coffee);
+        return "redirect:/coffee";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editCoffeeForm(@PathVariable Long id, Model model) {
+        Coffee coffee = coffeeList.stream()
+                                  .filter(c -> c.getId().equals(id))
+                                  .findFirst()
+                                  .orElse(null);
+        model.addAttribute("coffee", coffee);
+        return "edit-coffee";
+    }
+
+    @PostMapping("/edit")
+    public String editCoffee(@ModelAttribute Coffee coffee) {
+        coffeeList.removeIf(c -> c.getId().equals(coffee.getId()));
+        coffeeList.add(coffee);
+        return "redirect:/coffee";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteCoffee(@PathVariable Long id) {
+        coffeeList.removeIf(c -> c.getId().equals(id));
+        return "redirect:/coffee";
+    }
+
+    @GetMapping("/save")
+    public String saveToCSV() {
+        try (FileWriter writer = new FileWriter("coffee-list.csv");
+             CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("ID", "Name", "Description"))) {
+            for (Coffee coffee : coffeeList) {
+                csvPrinter.printRecord(coffee.getId(), coffee.getName(), coffee.getDescription());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/coffee";
+    }
+
+    @GetMapping("/search")
+    public String searchCoffee(@RequestParam String query, Model model) {
+        List<Coffee> filteredList = coffeeList.stream()
+                                              .filter(c -> c.getName().toLowerCase().contains(query.toLowerCase()))
+                                              .toList();
+        model.addAttribute("coffeeList", filteredList);
+        return "coffee-list";
+    }
+}
