@@ -1,0 +1,72 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e3f2fd; /* Light blue for a soft, pleasant background */
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header */
+h1 {
+    color: #0d47a1; /* Deep blue for a strong and clean look */
+    font-size: 28px;
+}
+
+/* Table Styling */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #1976d2; /* Medium blue for the header */
+    color: white;
+}
+
+/* Buttons */
+a, button {
+    text-decoration: none;
+    color: white;
+    background: #1565c0; /* Dark blue for buttons */
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+a:hover, button:hover {
+    background: #0d47a1; /* Deeper blue for hover state */
+}
+
+/* Form Styling */
+form {
+    background: white;
+    padding: 20px;
+    width: 50%;
+    margin: 20px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}

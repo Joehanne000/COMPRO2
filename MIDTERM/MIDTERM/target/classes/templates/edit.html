@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Coffee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #FFFFFF; /* White */
+            color: #000000; /* Black */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 1px solid #DDDDDD;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #CCCCCC;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Update Coffee</h1>
+<form action="/update" method="post">
+    <input type="hidden" name="id" value="123">
+    <label>Name: <input type="text" name="name" required></label>
+    <label>Type: <input type="text" name="type" required></label>
+    <label>Size: <input type="text" name="size" required></label>
+    <label>Price: <input type="number" step="0.01" name="price" required></label>
+    <label>Roast Level: <input type="text" name="roastLevel" required></label>
+    <label>Origin: <input type="text" name="origin" required></label>
+    <label>Decaf:
+        <select name="isDecaf">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </label>
+    <label>Stock: <input type="number" name="stock" required></label>
+    <label>Flavor Notes: <input type="text" name="flavorNotes"></label>
+    <label>Brew Method: <input type="text" name="brewMethod" required></label>
+    <button type="submit">Update Coffee</button>
+</form>
+<a href="/">Back to List</a>
+
+</body>
+</html>

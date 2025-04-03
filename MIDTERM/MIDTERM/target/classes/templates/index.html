@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Coffee List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #FFEFD5; /* Peach Puff */
+            color: #4B0082; /* Indigo */
+        }
+        h1 {
+            color: #DC143C; /* Crimson */
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            justify-content: center;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #FAFAD2; /* Light Goldenrod Yellow */
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #FFD700; /* Gold */
+            color: #4B0082; /* Indigo */
+        }
+        tr:nth-child(even) {
+            background-color: #F0E68C; /* Khaki */
+        }
+        tr:nth-child(odd) {
+            background-color: #FFFACD; /* Lemon Chiffon */
+        }
+        a {
+            text-decoration: none;
+            color: #DC143C; /* Crimson */
+            font-weight: bold;
+        }
+        a:hover {
+            color: #FFD700; /* Gold */
+        }
+        .add-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #DC143C; /* Crimson */
+            color: #FFFFFF; /* White */
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .add-button:hover {
+            background-color: #8B0000; /* Dark Red */
+        }
+        .search-bar {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .search-bar input {
+            padding: 10px;
+            width: 50%;
+            border: 1px solid #4B0082;
+            border-radius: 5px;
+            background-color: #E6E6FA; /* Lavender */
+            color: #4B0082;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #DC143C; /* Crimson */
+            color: #FFFFFF; /* White */
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .search-bar button:hover {
+            background-color: #8B0000; /* Dark Red */
+        }
+    </style>
+</head>
+<body>
+<h1>Available Coffees</h1>
+
+<!-- Search Bar -->
+<div class="search-bar">
+    <form action="/" method="get">
+        <input type="text" name="search" placeholder="Search coffees..." />
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Size</th>
+        <th>Price</th>
+        <th>Roast Level</th>
+        <th>Origin</th>
+        <th>Decaf</th>
+        <th>Stock</th>
+        <th>Flavor Notes</th>
+        <th>Brew Method</th>
+        <th>Actions</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="coffee : ${coffees}">
+        <td th:text="${coffee.id}"></td>
+        <td th:text="${coffee.name}"></td>
+        <td th:text="${coffee.type}"></td>
+        <td th:text="${coffee.size}"></td>
+        <td th:text="${coffee.price}"></td>
+        <td th:text="${coffee.roastLevel}"></td>
+        <td th:text="${coffee.origin}"></td>
+        <td th:text="${coffee.decaf} ? 'Yes' : 'No'"></td>
+        <td th:text="${coffee.stock}"></td>
+        <td th:text="${#strings.arrayJoin(coffee.flavorNotes, ', ')}"></td>
+        <td th:text="${coffee.brewMethod}"></td>
+        <td>
+            <a th:href="@{/edit(id=${coffee.id})}">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/delete(id=${coffee.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+<a href="/add" class="add-button">Add New Coffee</a>
+</body>
+</html>
