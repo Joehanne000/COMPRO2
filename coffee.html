@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Entry Form</title>
+</head>
+<body>
+<form id="coffeeEntryForm">
+    <label>Name: <input type="text" id="name" required minlength="2" maxlength="50"></label><br>
+    <label>Type:
+        <select id="type" required>
+            <option value="">Select</option>
+            <option value="Arabica">Arabica</option>
+            <option value="Robusta">Robusta</option>
+        </select>
+    </label><br>
+    <label>Size:
+        <select id="size" required>
+            <option value="">Select</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+    </label><br>
+    <label>Price: <input type="number" id="price" required min="0.01" step="0.01"></label><br>
+    <label>Roast Level:
+        <select id="roastLevel" required>
+            <option value="">Select</option>
+            <option value="Light">Light</option>
+            <option value="Medium">Medium</option>
+            <option value="Dark">Dark</option>
+        </select>
+    </label><br>
+    <label>Origin: <input type="text" id="origin" maxlength="100"></label><br>
+    <label>Decaf? <input type="checkbox" id="isDecaf"></label><br>
+    <label>Stock: <input type="number" id="stock" required min="0"></label><br>
+    <fieldset>
+        <legend>Flavor Notes</legend>
+        <input type="checkbox" id="chocolate" value="Chocolate"> Chocolate
+        <input type="checkbox" id="citrus" value="Citrus"> Citrus
+        <input type="checkbox" id="nutty" value="Nutty"> Nutty
+    </fieldset><br>
+    <label>Brew Method:
+        <select id="brewMethod" required>
+            <option value="">Select</option>
+            <option value="Drip">Drip</option>
+            <option value="French Press">French Press</option>
+            <option value="Espresso">Espresso</option>
+        </select>
+    </label><br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
